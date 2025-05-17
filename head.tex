@@ -28,7 +28,8 @@
 \usepackage{listings, jvlisting} % コードの色付けとフォーマット
 
 % --- 参考文献関連 ---
-\usepackage[style = phys, backend=biber]{biblatex}
+% \usepackage[style=phys, backend=biber]{biblatex}
+\usepackage[backend=biber, sortcites=true, style=phys]{biblatex}
 \usepackage{usebib} % 参考文献の管理と挿入
 \usepackage{url, hyperref} % URLとリンクの設定
 
@@ -39,9 +40,10 @@
 \usepackage{siunitx} % 単位の表記
 \usepackage{docmute, needspace}
 \usepackage{makeidx}
-\bibliography{ref.bib}
 
-
+% \renewbibmacro*{title}{%
+%   \printtext[title]{\printfield[titlecase]{title}.\addspace}%
+% }
 % --- 定理スタイルと数式設定 ---
 \theoremstyle{definition} % 定義スタイル
 \numberwithin{equation}{section} % 式番号をサブセクション単位でリセット
@@ -72,21 +74,298 @@
 \newcolumntype{b}{!{\vrule width 1.5pt}} % 太いカラム
 \UseTblrLibrary{amsmath, booktabs, counter, diagbox, functional, hook, html, nameref, siunitx, varwidth, zref} % tabularrayのライブラリ
 \setlength{\columnseprule}{0.4pt} % カラム区切り線の太さ
-\captionsetup[figure]{font = bf} % 図のキャプションの太字設定
-\captionsetup[table]{font = bf} % 表のキャプションの太字設定
-\captionsetup[lstlisting]{font = bf} % コードのキャプションの太字設定
-\captionsetup[subfigure]{font = bf, labelformat = simple} % サブ図のキャプション設定
+% \captionsetup[figure]{font = bf} % 図のキャプションの太字設定
+% \captionsetup[table]{font = bf} % 表のキャプションの太字設定
+% \captionsetup[lstlisting]{font = bf} % コードのキャプションの太字設定
+% \captionsetup[subfigure]{font = bf, labelformat = simple} % サブ図のキャプション設定
 \setcounter{secnumdepth}{4} % セクションの深さ設定
 \newcolumntype{d}{D{.}{.}{5}} % 数値のカラム
 \newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}} % センター揃えのカラム
 \DeclareMathOperator{\diag}{diag}
 \everymath{\displaystyle} % 数式のスタイル
 
-\setcounter{tocdepth}{1} % 目次の深さ
+\setcounter{tocdepth}{0} % 目次の深さ
 \makeatletter
-\@addtoreset{equation}{section} % セクションごとに式番号をリセット
+\@addtoreset{equation}{chapter} % セクションごとに式番号をリセット
 \makeatother
 
+\newcommand{\braketg}{\braket{\r{g}}}
+\ExecuteBibliographyOptions{
+  sorting=none, biblabel=brackets, articletitle=true, chaptertitle=false,
+  pageranges=false, maxnames=99, minnames=1, hyperref=auto, abbreviate=true,
+  date=year, arxiv=abs, isbn=false, url=false, doi=true, eprint=true, giveninits=true
+}
+\DeclareSourcemap{
+    \maps[datatype=bibtex, overwrite=true]{
+        \map{
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sLetters},
+                replace={Phys. Rev. Lett.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sA},
+                replace={Phys. Rev. A}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sB},
+                replace={Phys. Rev. B}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sC},
+                replace={Phys. Rev. C}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sD},
+                replace={Phys. Rev. D}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sE},
+                replace={Phys. Rev. E}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physical\sReview\sX},
+                replace={Phys. Rev. X}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Reviews\sof\sModern\sPhysics},
+                replace={Rev. Mod. Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Journal\sof\sApplied\sPhysics},
+                replace={J. Appl. Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Applied\sPhysics\sA},
+                replace={Appl. Phys. A}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Applied\sPhysics\sB},
+                replace={Appl. Phys. B}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Applied\sPhysics\sLetters},
+                replace={Appl. Phys. Lett.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Review\sof\sScientific\sInstruments},
+                replace={Rev. Sci. Instrum.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Nature},
+                replace={Nature}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Science},
+                replace={Science}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Nature\sPhysics},
+                replace={Nat. Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Nature\sCommunications},
+                replace={Nat. Commun.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Scientific\sReports},
+                replace={Sci. Rep.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Journal\sof\sPhysics\sA:\sMathematical\sand\sTheoretical},
+                replace={J. Phys. A: Math. Theor.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Journal\sof\sPhysics\sB:\sAtomic,\sMolecular\sand\sOptical\sPhysics},
+                replace={J. Phys. B: At. Mol. Opt. Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Journal\sof\sPhysics:\sCondensed\sMatter},
+                replace={J. Phys.: Condens. Matter}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Annalen\sder\sPhysik},
+                replace={Ann. Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Europhysics\sLetters},
+                replace={Europhys. Lett.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{New\sJournal\sof\sPhysics},
+                replace={New J. Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physics\sLetters\sA},
+                replace={Phys. Lett. A}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Physics\sLetters\sB},
+                replace={Phys. Lett. B}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Nuclear\sPhysics\sA},
+                replace={Nucl. Phys. A}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Nuclear\sPhysics\sB},
+                replace={Nucl. Phys. B}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Journal\sof\sHigh\sEnergy\sPhysics},
+                replace={J. High Energy Phys.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Classical\sand\sQuantum\sGravity},
+                replace={Class. Quantum Grav.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{Monthly\sNotices\sof\sthe\sRoyal\sAstronomical\sSociety},
+                replace={Mon. Not. R. Astron. Soc.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sAntennas\sand\sPropagation},
+                replace={IEEE Trans. Antennas Propag.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sCommunications},
+                replace={IEEE Trans. Commun.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sSignal\sProcessing},
+                replace={IEEE Trans. Signal Process.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sPhotonics},
+                replace={IEEE Trans. Photonics}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sJournal\son\sQuantum\sElectronics},
+                replace={IEEE J. Quantum Electron.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sJournal\son\sSelected\sTopics\sin\sQuantum\sElectronics},
+                replace={IEEE J. Sel. Top. Quantum Electron.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sWireless\sCommunications},
+                replace={IEEE Trans. Wireless Commun.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sMicrowave\sTheory\sand\sTechniques},
+                replace={IEEE Trans. Microwave Theory Tech.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sInstrumentation\sand\sMeasurement},
+                replace={IEEE Trans. Instrum. Meas.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sElectromagnetic\sCompatibility},
+                replace={IEEE Trans. Electromagn. Compat.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sImage\sProcessing},
+                replace={IEEE Trans. Image Process.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sCircuit\sand\sSystem\sII:\sExpress\sBriefs},
+                replace={IEEE Trans. Circuits Syst. II: Express Briefs}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sAccess},
+                replace={IEEE Access}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sNanotechnology},
+                replace={IEEE Trans. Nanotechnol.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sFuzzy\sSystems},
+                replace={IEEE Trans. Fuzzy Syst.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sControl\sSystems\stheory\sand\sApplications},
+                replace={IEEE Trans. Control Syst. Theory Appl.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sSmart\sGrid},
+                replace={IEEE Trans. Smart Grid}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sVehicular\sTechnology},
+                replace={IEEE Trans. Veh. Technol.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sPower\sElectronics},
+                replace={IEEE Trans. Power Electron.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sIndustrial\sElectronics},
+                replace={IEEE Trans. Ind. Electron.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sComputers},
+                replace={IEEE Trans. Comput.}
+            ]
+            \step[
+                fieldsource=journal,
+                match=\regexp{IEEE\sTransactions\son\sSoftware\sEngineering},
+                replace={IEEE Trans. Softw. Eng.}
+            ]
+        }
+    }
+}
 \newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
 \renewcommand{\figurename}{図}
 \renewcommand{\i}{\mathrm{i}} % 複素数単位i
@@ -102,10 +381,10 @@
 \newcommand{\kb}{k_{\mathrm{B}}} % ボルツマン定数
 \renewcommand{\epsilon}{\varepsilon}
 \newcommand{\fullref}[1]{\textbf{\ref{#1} \nameref{#1}}}
-\newcommand{\reff}[1]{\textbf{図\ref{#1}}} % 図参照のショートカット
-\newcommand{\reft}[1]{\textbf{表\ref{#1}}} % 表参照のショートカット
-\newcommand{\refe}[1]{\textbf{式\eqref{#1}}} % 式参照のショートカット
-\newcommand{\refp}[1]{\textbf{コード\ref{#1}}} % コード参照のショートカット
+\newcommand{\reff}[1]{{図\ref{#1}}} % 図参照のショートカット
+\newcommand{\reft}[1]{{表\ref{#1}}} % 表参照のショートカット
+\newcommand{\refe}[1]{{式\eqref{#1}}} % 式参照のショートカット
+\newcommand{\refp}[1]{{コード\ref{#1}}} % コード参照のショートカット
 \renewcommand{\lstlistingname}{コード} % コードリストの名前
 \renewcommand{\theequation}{\thesection.\arabic{equation}} % 式番号の形式
 \renewcommand{\footrulewidth}{0.4pt} % フッターの線
@@ -115,12 +394,8 @@
 \newcommand{\bhline}{\noalign{\hrule height 1.5pt}} % 太い横線
 \renewcommand{\appendixname}{付録}
 
-\newcommand{\braketg}{\braket{\r{g}}}
-\ExecuteBibliographyOptions{
-  sorting=none, biblabel=brackets, articletitle=true, chaptertitle=false,
-  pageranges=false, maxnames=99, minnames=1, hyperref=auto, abbreviate=false,
-  date=year, arxiv=abs, isbn=false, url=false, doi=false, eprint=true, giveninits=true
-}
+
+\bibliography{ref.bib}
 
 % \DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/#1}{#1}}
 \DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/ #1}{#1} (\thefield{year})}
@@ -129,9 +404,9 @@
 \AtEveryBibitem{\clearfield{doi}}  % DOIフィールドを消す
 \AtEveryBibitem{\clearfield{url}}  % URLフィールドを消す
 \DeclareFieldFormat[article]{note}{\mkbibparens{arXiv:#1}}  % arXivの表示形式を調整
-\AtEveryBibitem{
-  \clearfield{title}
-}
+% \AtEveryBibitem{
+%   \clearfield{title}
+% }
 % --- メタ情報 ---
 \title{論文まとめノート}
 \date{更新日: \today}
