@@ -26,12 +26,14 @@
 % --- 色とスタイル ---
 \usepackage{xcolor, color, colortbl, tcolorbox} % 色とカラーボックス
 \usepackage{listings, jvlisting} % コードの色付けとフォーマット
+\definecolor{apsblue}{HTML}{2d3092}
 
 % --- 参考文献関連 ---
 % \usepackage[style=phys, backend=biber]{biblatex}
-\usepackage[backend=biber, sortcites=true, style=phys]{biblatex}
+\usepackage[backend=biber, sortcites=true, style=phys, doi=false]{biblatex}
 \usepackage{usebib} % 参考文献の管理と挿入
-\usepackage{url, hyperref} % URLとリンクの設定
+\usepackage{url} % URLとリンクの設定
+\usepackage[colorlinks=true, linkcolor=apsblue, citecolor=apsblue, urlcolor=apsblue]{hyperref}
 
 % --- その他の便利なパッケージ ---
 \usepackage{footmisc} % 脚注のカスタマイズ
@@ -47,26 +49,6 @@
 % --- 定理スタイルと数式設定 ---
 \theoremstyle{definition} % 定義スタイル
 \numberwithin{equation}{section} % 式番号をサブセクション単位でリセット
-
-% --- hyperrefの設定 ---
-\hypersetup{
-  setpagesize = false,
-  bookmarks = true,
-  bookmarksdepth = tocdepth,
-  bookmarksnumbered = true,
-  colorlinks = false,
-  pdftitle = {}, % PDFタイトル
-  pdfsubject = {}, % PDFサブジェクト
-  pdfauthor = {}, % PDF作者
-  pdfkeywords = {} % PDFキーワード
-}
-
-% --- siunitxの設定 ---
-\sisetup{
-  table-format = 1.5, % 小数点以下の桁数
-  table-number-alignment = center, % 数値の中央揃え
-}
-
 
 % --- その他の設定 ---
 \allowdisplaybreaks % 数式の途中改ページ許可
@@ -90,11 +72,22 @@
 \makeatother
 
 \newcommand{\braketg}{\braket{\r{g}}}
-\ExecuteBibliographyOptions{
-  sorting=none, biblabel=brackets, articletitle=true, chaptertitle=false,
-  pageranges=false, maxnames=99, minnames=1, hyperref=auto, abbreviate=true,
-  date=year, arxiv=abs, isbn=false, url=false, doi=true, eprint=true, giveninits=true
-}
+
+% \DeclareFieldFormat{journal+issuetitle}{%
+%   \iffieldundef{doi}
+%     {\printfield{journal}%
+%      \setunit*{\addspace}%
+%      \printfield{volume}%
+%      \setunit*{\addcomma\space}%
+%      \printfield{pages}}
+%     {\href{https://doi.org/\thefield{doi}}%
+%      {\printfield{journal}%
+%       \setunit*{\addspace}%
+%       \printfield{volume}%
+%       \setunit*{\addcomma\space}%
+%       \printfield{pages}}}}
+
+% \DeclareFieldFormat{year}{(\printfield{year})}
 \DeclareSourcemap{
     \maps[datatype=bibtex, overwrite=true]{
         \map{
@@ -394,16 +387,19 @@
 \newcommand{\bhline}{\noalign{\hrule height 1.5pt}} % 太い横線
 \renewcommand{\appendixname}{付録}
 
-
+\ExecuteBibliographyOptions{
+  sorting=none, biblabel=brackets, articletitle=true, chaptertitle=false,
+  pageranges=false, maxnames=99, minnames=1, hyperref=auto, abbreviate=true
+}
 \bibliography{ref.bib}
 
 % \DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/#1}{#1}}
-\DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/ #1}{#1} (\thefield{year})}
+% \DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/ #1}{#1} (\thefield{year})}
 % 出力のカスタマイズ（タイトルを省略し、arXiv形式を適用）
 % \DeclareFieldFormat[article]{title}{\mkbibemph{#1}}  % 必要に応じて
-\AtEveryBibitem{\clearfield{doi}}  % DOIフィールドを消す
-\AtEveryBibitem{\clearfield{url}}  % URLフィールドを消す
-\DeclareFieldFormat[article]{note}{\mkbibparens{arXiv:#1}}  % arXivの表示形式を調整
+% \AtEveryBibitem{\clearfield{doi}}  % DOIフィールドを消す
+% \AtEveryBibitem{\clearfield{url}}  % URLフィールドを消す
+% \DeclareFieldFormat[article]{note}{\mkbibparens{arXiv:#1}}  % arXivの表示形式を調整
 % \AtEveryBibitem{
 %   \clearfield{title}
 % }
