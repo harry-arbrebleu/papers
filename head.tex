@@ -1,0 +1,274 @@
+\usepackage{luatexja} % LuaTeXで日本語を使うためのパッケージ
+\usepackage{luatexja-fontspec} % LuaTeX用の日本語フォント設定
+% lualatex main && upmendex -r -c -s main.ist -g main && lualatex main  
+
+% --- 数学関連 ---
+\usepackage{amsmath, amssymb, amsfonts, mathtools, bm, amsthm} % 基本的な数学パッケージ
+\usepackage{type1cm, upgreek} % 数式フォントとギリシャ文字k
+\usepackage{physics, mhchem} % 物理や化学の記号や式の表記を簡単にする
+
+% --- 表関連 ---
+\usepackage{multirow, longtable, tabularx, array, colortbl, dcolumn, diagbox} % 表のレイアウトを柔軟にする
+\usepackage{tablefootnote, truthtable} % 表中に注釈を追加、真理値表
+\usepackage{tabularray} % 高度な表組みレイアウト
+
+% --- グラフィック関連 ---
+\usepackage{tikz, graphicx} % 図の描画と画像の挿入
+% \usepackage{background} % ウォーターマークの設定
+\usepackage{caption, subcaption} % 図や表のキャプション設定
+\usepackage{float, here} % 図や表の位置指定
+
+% --- レイアウトとページ設定 ---
+\usepackage{fancyhdr} % ページヘッダー、フッター、余白の設定
+\usepackage[top = 20truemm, bottom = 20truemm, left = 20truemm, right = 20truemm]{geometry}
+\usepackage{fancybox, ascmac} % ボックスのデザイン
+
+% --- 色とスタイル ---
+\usepackage{xcolor, color, colortbl, tcolorbox} % 色とカラーボックス
+\usepackage{listings, jvlisting} % コードの色付けとフォーマット
+\definecolor{apsblue}{HTML}{2d3092}
+
+% --- 参考文献関連 ---
+% \usepackage[style=phys, backend=biber]{biblatex}
+\usepackage[backend=biber, sortcites=true, style=phys, doi=false]{biblatex}
+\usepackage{usebib} % 参考文献の管理と挿入
+\usepackage{url} % URLとリンクの設定
+\usepackage[colorlinks=true, linkcolor=apsblue, citecolor=apsblue, urlcolor=apsblue]{hyperref}
+
+% --- その他の便利なパッケージ ---
+\usepackage{footmisc} % 脚注のカスタマイズ
+\usepackage{multicol} % 複数段組
+\usepackage{comment} % コメントアウトの拡張
+\usepackage{siunitx} % 単位の表記
+\usepackage{docmute, needspace}
+\usepackage{makeidx}
+
+% \renewbibmacro*{title}{%
+%   \printtext[title]{\printfield[titlecase]{title}.\addspace}%
+% }
+% --- 定理スタイルと数式設定 ---
+\theoremstyle{definition} % 定義スタイル
+\numberwithin{equation}{chapter} % 式番号をサブセクション単位でリセット
+
+% --- その他の設定 ---
+\allowdisplaybreaks % 数式の途中改ページ許可
+\newcolumntype{t}{!{\vrule width 0.1pt}} % 新しいカラムタイプ
+\newcolumntype{b}{!{\vrule width 1.5pt}} % 太いカラム
+\UseTblrLibrary{amsmath, booktabs, counter, diagbox, functional, hook, html, nameref, siunitx, varwidth, zref} % tabularrayのライブラリ
+\setlength{\columnseprule}{0.4pt} % カラム区切り線の太さ
+% \captionsetup[figure]{font = bf} % 図のキャプションの太字設定
+% \captionsetup[table]{font = bf} % 表のキャプションの太字設定
+% \captionsetup[lstlisting]{font = bf} % コードのキャプションの太字設定
+% \captionsetup[subfigure]{font = bf, labelformat = simple} % サブ図のキャプション設定
+\setcounter{secnumdepth}{4} % セクションの深さ設定
+\newcolumntype{d}{D{.}{.}{5}} % 数値のカラム
+\newcolumntype{M}[1]{>{\centering\arraybackslash}m{#1}} % センター揃えのカラム
+\DeclareMathOperator{\diag}{diag}
+\everymath{\displaystyle} % 数式のスタイル
+
+\setcounter{tocdepth}{0} % 目次の深さ
+% \makeatletter
+% \@addtoreset{equation}{chapter} % セクションごとに式番号をリセット
+% \makeatother
+
+\newcommand{\braketg}{\braket{\r{g}}}
+
+% \DeclareFieldFormat{journal+issuetitle}{%
+%   \iffieldundef{doi}
+%     {\printfield{journal}%
+%      \setunit*{\addspace}%
+%      \printfield{volume}%
+%      \setunit*{\addcomma\space}%
+%      \printfield{pages}}
+%     {\href{https://doi.org/\thefield{doi}}%
+%      {\printfield{journal}%
+%       \setunit*{\addspace}%
+%       \printfield{volume}%
+%       \setunit*{\addcomma\space}%
+%       \printfield{pages}}}}
+
+% \DeclareFieldFormat{year}{(\printfield{year})}
+\DeclareSourcemap{
+  \maps[datatype=bibtex, overwrite=true]{
+    \map{
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sLetters},
+        replace={Phys. Rev. Lett.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sA},
+        replace={Phys. Rev. A}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sB},
+        replace={Phys. Rev. B}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sC},
+        replace={Phys. Rev. C}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sD},
+        replace={Phys. Rev. D}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sE},
+        replace={Phys. Rev. E}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physical\sReview\sX},
+        replace={Phys. Rev. X}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Reviews\sof\sModern\sPhysics},
+        replace={Rev. Mod. Phys.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Journal\sof\sApplied\sPhysics},
+        replace={J. Appl. Phys.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Applied\sPhysics\sA},
+        replace={Appl. Phys. A}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Applied\sPhysics\sB},
+        replace={Appl. Phys. B}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Applied\sPhysics\sLetters},
+        replace={Appl. Phys. Lett.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Review\sof\sScientific\sInstruments},
+        replace={Rev. Sci. Instrum.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Nature},
+        replace={Nature}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Science},
+        replace={Science}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Nature\sPhysics},
+        replace={Nat. Phys.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Nature\sCommunications},
+        replace={Nat. Commun.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Scientific\sReports},
+        replace={Sci. Rep.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Journal\sof\sPhysics\sA:\sMathematical\sand\sTheoretical},
+        replace={J. Phys. A: Math. Theor.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Journal\sof\sPhysics\sB:\sAtomic,\sMolecular\sand\sOptical\sPhysics},
+        replace={J. Phys. B: At. Mol. Opt. Phys.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Journal\sof\sPhysics:\sCondensed\sMatter},
+        replace={J. Phys.: Condens. Matter}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Annalen\sder\sPhysik},
+        replace={Ann. Phys.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Europhysics\sLetters},
+        replace={Europhys. Lett.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{New\sJournal\sof\sPhysics},
+        replace={New J. Phys.}
+      ]
+      \step[
+        fieldsource=journal,
+        match=\regexp{Physics\sLetters\sA},
+        replace={Phys. Lett. A}
+      ]
+      \step[
+          fieldsource=journal,
+          match=\regexp{Physics\sLetters\sB},
+          replace={Phys. Lett. B}
+      ]
+    }
+  }
+}
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle}
+\renewcommand{\figurename}{図}
+\renewcommand{\i}{\mathrm{i}} % 複素数単位i
+\renewcommand{\laplacian}{\grad^2} % ラプラシアンの記号
+\renewcommand{\thesubfigure}{(\alph{subfigure})} % サブ図の番号形式
+\newcommand{\m}[3]{\multicolumn{#1}{#2}{#3}} % マルチカラムのショートカット
+\renewcommand{\r}[1]{\mathrm{#1}} % mathrmのショートカット
+\newcommand{\e}{\mathrm{e}} % 自然対数の底e
+\newcommand{\Ef}{E_{\mathrm{F}}} % フェルミエネルギー
+\renewcommand{\c}{\si{\degreeCelsius}} % 摂氏記号
+\renewcommand{\d}{\r{d}} % d記号
+\renewcommand{\t}[1]{\texttt{#1}} % タイプライタフォント
+\newcommand{\kb}{k_{\mathrm{B}}} % ボルツマン定数
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\fullref}[1]{\textbf{\ref{#1} \nameref{#1}}}
+\newcommand{\reff}[1]{{図\ref{#1}}} % 図参照のショートカット
+\newcommand{\reft}[1]{{表\ref{#1}}} % 表参照のショートカット
+\newcommand{\refe}[1]{{式\eqref{#1}}} % 式参照のショートカット
+\newcommand{\refp}[1]{{コード\ref{#1}}} % コード参照のショートカット
+\renewcommand{\lstlistingname}{コード} % コードリストの名前
+\renewcommand{\theequation}{\thesection.\arabic{equation}} % 式番号の形式
+\renewcommand{\footrulewidth}{0.4pt} % フッターの線
+\newcommand{\mar}[1]{\textcircled{\scriptsize #1}} % 丸囲み文字
+\newcommand{\combination}[2]{{}_{#1} \mathrm{C}_{#2}} % 組み合わせ
+\newcommand{\thline}{\noalign{\hrule height 0.1pt}} % 細い横線
+\newcommand{\bhline}{\noalign{\hrule height 1.5pt}} % 太い横線
+\renewcommand{\appendixname}{付録}
+
+\ExecuteBibliographyOptions{
+  sorting=none, biblabel=brackets, articletitle=true, chaptertitle=false,
+  pageranges=false, maxnames=99, minnames=1, hyperref=auto, abbreviate=true
+}
+\bibliography{ref.bib}
+
+% \DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/#1}{#1}}
+% \DeclareFieldFormat{eprint}{arXiv:\href{http://arxiv.org/abs/ #1}{#1} (\thefield{year})}
+% 出力のカスタマイズ（タイトルを省略し、arXiv形式を適用）
+% \DeclareFieldFormat[article]{title}{\mkbibemph{#1}}  % 必要に応じて
+% \AtEveryBibitem{\clearfield{doi}}  % DOIフィールドを消す
+% \AtEveryBibitem{\clearfield{url}}  % URLフィールドを消す
+% \DeclareFieldFormat[article]{note}{\mkbibparens{arXiv:#1}}  % arXivの表示形式を調整
+% \AtEveryBibitem{
+%   \clearfield{title}
+% }
+% --- メタ情報 ---
+\title{論文まとめノート}
+\date{更新日: \today}
+\author{Haruki AOKI}
