@@ -371,7 +371,7 @@
         \item[閲覧日] 26th May 2025
         \item[キーワード] optomechanical sensing, synthetic magnetism
         \item[文献番号] \cite{PhysRevA.111.053508}
-        \item[関連論文] エンタングルメントの論文\cite{PhysRevLett.129.063602}，オプトメカニクスのブライトとダーク\cite{lake2020two}
+        \item[関連論文] エンタングルメントの論文\cite{PhysRevLett.129.063602}，オプトメカニクスのブライトとダーク\cite{lake2020two}，超伝導での微小な力の測定\cite{PhysRevLett.128.150501}，Synthetic magnetism に関する理論計算\cite{PhysRevLett.129.063602}，人工磁場に関する超伝導量子ビットでの測定\cite{massel2012multimode}，量子Langevin方程式\cite{PhysRevLett.46.1}，実現可能なオプトメカニクス系\cite{eichenfield2009picogram}
       \end{description}
     \end{boxnote}
     \section{行ったこと}
@@ -456,7 +456,7 @@
     と書ける．
     今回はホモダイン検出を行うので，LO項と$\hat{c}_{\r{in}}$の位相差を$\theta$とすると，$\hat{X}_{\r{c}}$のモードの入出力関係式を用いると，
     \begin{align}
-      \hat{P}^o(\theta, \omega)\coloneqq A_1\hat{X}^{\r{in}}_{\r{c}} + A_2\hat{P}^{\r{in}}_{\r{c}} + A_3f_{\r{in, 1}} + A_4f_{\r{in, 1}}
+      \hat{P}^o(\theta, \omega)\coloneqq A_1\hat{X}^{\r{in}}_{\r{c}} + A_2\hat{P}^{\r{in}}_{\r{c}} + A_3f_{\r{in, 1}} + A_4f_{\r{in, 1}} \label{PhysRevA.111.053508-main-work}
     \end{align}
     として，得られるパワースペクトルは，
     \begin{align}
@@ -465,8 +465,8 @@
     によって得られる．
     また，センシングしたい力の信号$S_{\r{F_{ex}}}$に，熱ノイズ$S_{\r{th}}$とその他のノイズ$N^{\theta, \phi}_{\r{add}}$が加わり，応答函数$R^{\theta, \phi}_m$を掛けたものとなる．
     我々は，$R$を大きくして，$N$や$S_{\r{th}}$は小さくしたい．
-    \section{結果}
-      
+    途中の計算は追っていない．
+    おそらく，\refe{PhysRevA.111.053508-main-work}の計算が主な仕事なのだろう．
   \appendix
   \chapter*{積読}
     \begin{description}
@@ -486,6 +486,7 @@
       \item[\cite{PhysRevLett.130.213601}] Telecom-Wavelength Quantum Repeater Node Based on a Trapped-Ion Processor
       \item[\cite{lake2020two}] Two-colour interferometry and switching through optomechanical dark mode excitation
       \item[\cite{low2025control}] Control and readout of a 13-level trapped ion qudit 
+      \item[\cite{boutakka2025quantum}] Quantum entanglement in two-photon Rabi Stark model
     \end{description}
   \defbibheading{bibliography}{\chapter*{参考文献}}
   \printbibliography
