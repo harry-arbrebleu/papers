@@ -18,4 +18,7 @@
 *.bbl
 *.blg
 *Zone*
-/src/*
+/src/**/*.pdf
+# /src/**/*.png
+tmp.bib
+Exported Items.bib
