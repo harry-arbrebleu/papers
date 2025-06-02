@@ -1,0 +1,45 @@
+\documentclass{report}
+\input{head.tex}
+\begin{document}
+    \begin{boxnote}
+      \begin{description}
+        \item[種類] Article
+        \item[閲覧日] 31th May 2025
+        \item[キーワード] 2光子Rabiモデル，量子エンタングルメント
+        \item[文献番号] \cite{boutakkaQuantumEntanglementTwophoton2025}
+        \item[関連論文] 2光子Rabiモデルの提唱\cite{hammaniTwophotonQuantumRabi2023}，Rabi-Stark効果の論文\cite{grimsmoCavityQEDSimulationQubitoscillator2013a}，Rabiモデルの解析解\cite{braakIntegrabilityRabiModel2011a}，イオントラップ系での実験\cite{congSelectiveInteractionsQuantum2020}
+      \end{description}
+    \end{boxnote}
+    \section{行ったこと}
+      2光子Rabi-Starkモデルでの，ボゾン場と2準位系のエンタングルメントの数値計算による評価．
+    \section{モデル}
+      まず，Rabi-Starkモデルとは，Boson場と2準位系が相互作用する全体系に，さらにAC-Stark効果により2準位系のエネルギーをシフトしたモデルである．
+      系のハミルトニアンは，
+      \begin{align}
+        \hat{H}_{\r{QRSM}} = \omega_{\r{c}}\hat{a}^{\dag}\hat{a} + \frac{\omega_0}{2}\hat{\sigma}_z + g\qty(\hat{\sigma} + \hat{\sigma}^{\dag})\qty(\hat{a} + \hat{a}^{\dag}) + \gamma\hat{\sigma}_z\hat{a}^{\dag}\hat{a}
+      \end{align}
+      である．
+      さらに，相互作用を2光子過程にの場合，相互作用項は，
+      \begin{align}
+        \hat{H}_{\r{2pRSM}} = -\qty(\frac{\omega_0}{2} + \gamma\hat{a}^{\dag}\hat{a}) + \omega_{\r{c}}\hat{a}^{\dag}\hat{a} + g\qty(\hat{a}^{\dag 2} + \hat{a}^2)\hat{\sigma}_z
+      \end{align}
+      と入る．
+      これをシミュレーションしている．
+    \section{結果}
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Quantum_entanglement_in_two-photon_Rabi_Stark_model/1.png}
+      \end{figure}
+      これは，AC-Starkシフトの強度$\gamma$ごとに，結合の強さ$g$を変えたときのエネルギー準位の変化図．(a)は$\gamma/\omega = 0.3$，(b)は$\gamma/\omega = 0.6$，(a)は$\gamma/\omega = 0.9$．
+      どれも，ある結合強度$g$のとき，エネルギー準位が異常に近くなっていることが分かる．
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Quantum_entanglement_in_two-photon_Rabi_Stark_model/2.png}
+      \end{figure}
+      これはBoson場に関して部分トレースを取ったときのWigner函数．AC-Starkシフトが弱い時はGauss函数様になっている一方，強い時はLorentz函数のように壊れていることが分かる．
+      \begin{figure}[H]
+        \centering
+        \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Quantum_entanglement_in_two-photon_Rabi_Stark_model/3.png}
+      \end{figure}
+      これは，系のvon Neumannエントロピーを表していて，それぞれ，ピークが立っていることが分かる．von Neumannエントロピーは，系のもつれている度合いを評価する量である．
+\end{document}

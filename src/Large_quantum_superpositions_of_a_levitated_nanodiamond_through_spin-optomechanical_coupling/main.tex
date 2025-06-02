@@ -1,0 +1,88 @@
+\documentclass{report}
+\input{../../head.tex}
+\begin{document}
+  \begin{boxnote}
+    \begin{description}
+      \item[種類] Article
+      \item[閲覧日] 2nd June 2025
+      \item[キーワード] 2光子Rabiモデル，量子エンタングルメント
+      \item[文献番号] \cite{PhysRevA.88.033614}
+      \item[関連論文] 機械的共振器の量子基底状態への冷却と単一フォノンの制御\cite{o2010quantum}，レーザー光の放射圧を用いた機械的振動子の量子基底状態冷却\cite{chan2011laser}，サイドバンド冷却による量子基底状態までの冷却\cite{teufel2011sideband}，スピンオプトメカニクスを用いたナノスケールの粒子の重ね合わせ\cite{PhysRevLett.107.020405}とその崩壊\cite{PhysRevA.84.052121}，${}^9\ce{Be+}$での実験\cite{PhysRevLett.76.1796}，断熱操作の時間短縮\cite{PhysRevLett.104.063002}
+    \end{description}
+  \end{boxnote}
+  \section{行ったこと}
+    ナノダイヤモンドを浮揚させて，電子スピン状態と運動状態を制御し，メゾスコピック重ね合わせが生成されることを理論的に示した．
+  \section{モデル}
+    まずNVのスピン状態に対する演算子を定義する．
+    \begin{align}
+      \hat{S}_z \coloneqq \ketbra{+1}{+1} - \ketbra{-1}{-1},\quad \ket{\pm} \coloneqq \frac{1}{\sqrt{2}}\qty(\ket{+1} \pm \ket{-1})\\ 
+      \hat{\sigma}_z \coloneqq \ketbra{+}{+} - \ketbra{-}{-},\quad \hat{\sigma}_+ \coloneqq \ketbra{+}{-},\quad \hat{\sigma}_- \coloneqq \ketbra{-}{+}.
+    \end{align}
+    古典的にマイクロ波を当てて状態$\ket{+1}$と$\ket{-1}$を駆動する．
+    系のエネルギー図はこのようになる．
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Large_quantum_superpositions_of_a_levitated_nanodiamond_through_spin-optomechanical_coupling/1b.png}
+    \end{figure}
+    系のハミルトニアンは，
+    \begin{align}
+      \hat{H}_{\r{eff}} = \hbar\omega_{\r{m}}\hat{a}^{\dag}_{\r{m}}\hat{a}_{\r{m}} + \hbar\Omega\hat{\sigma}_z + \hbar\lambda\qty(\hat{\sigma}_+ + \hat{\sigma}_-)\qty(\hat{a}_{\r{m}} + \hat{a}^{\dag}_{\r{m}})
+    \end{align}
+    となる．
+    \par
+    また，マイクロ波を切ると系のハミルトニアンは，
+    \begin{align}
+      \hat{H} = \hbar\omega_{\r{m}}\hat{a}^{\dag}_{\r{m}}\hat{a}_{\r{m}} + \hbar\lambda\qty(\hat{\sigma}_+ + \hat{\sigma}_-)\qty(\hat{a}_{\r{m}} + \hat{a}^{\dag}_{\r{m}})
+    \end{align}
+    となる．
+    また，マイクロ波を切る前と切った後でトラップの周波数を$\omega_{\r{m}} = \omega_{\r{m}1}$から，$\omega_{\r{m}} = \omega_{\r{m}2}$へと変化させる．
+    このとき，系の時間発展により$T_2 / 2 = \pi / \omega_{\r{m}2}$では，
+    \begin{align}
+      \ket{\Phi_{\pm}}_{n} = \frac{1}{\sqrt{2}}\qty(\ket{+1}\ket{D_m / 2}_{n} + \ket{-1}\ket{-D_m / 2}_{n})
+    \end{align}
+    となる．
+    これでは，もつれた猫状態であり，もつれを解消する．
+    $\ket{+1}\ket{D_m / 2}$と$\ket{-1}\ket{-D_m / 2}$の間のエネルギー差は$2.4\ \r{MHz}$であるのに対して，$\ket{+1}$と$\ket{-1}$の間のエネルギー差は$\r{kHz}$オーダーであるので，
+    選択的に$\ket{1}\ket{D_m / 2}$から$\ket{0}\ket{D_m / 2}$へと変化させることができる．
+    同様に，$\ket{-1}\ket{D_m / 2}$から$\pm\ket{0}\ket{D_m / 2}$へと変化させることができる．
+    なぜこれに複号が付くのかわからない．
+    そのときは，
+    \begin{align}
+      \ket{\psi_{\pm}}_n = \frac{1}{\sqrt{2}}\qty(\ket{D_m / 2}_{n} \pm \ket{-D_m / 2}_{n})
+    \end{align}
+    \par
+    なお，振動の測定には量子非破壊測定を行う．
+    そのハミルトニアンは，
+    \begin{align}
+      \hat{H}_{\r{QND}} = \hbar\chi\hat{\sigma}_z\hat{a}^{\dag}_{\r{m}}\hat{a}_{\r{m}}
+    \end{align}
+    である．
+    NVのスピンを，
+    \begin{align}
+      \ket{\psi}_{\r{measure}} = \frac{1}{\sqrt{2}}\qty(\ket{+} + \e^{\i\phi}\ket{-})
+    \end{align}
+    と準備して，$\hat{H}_{\r{QND}}$で時間発展させると，相対位相は，
+    \begin{align}
+      \phi(t) = \phi(0) + 2\chi nt
+    \end{align}
+    と時間発展するので振動非破壊測定できる．
+  \section{結果}
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Large_quantum_superpositions_of_a_levitated_nanodiamond_through_spin-optomechanical_coupling/3.png}
+    \end{figure}
+    (a)は最初に基底まで冷却したときである．
+    (b)と(c)はマイクロ波を切ったときの波動関数の広がり，(d)は運動の初期状態を$\ket{0}$としたとき，(e)は運動の初期状態を$\ket{1}$としたときである．
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Large_quantum_superpositions_of_a_levitated_nanodiamond_through_spin-optomechanical_coupling/5.png}
+    \end{figure}
+    エンタングルした状態を変えながら位置ごとの存在確率を表した図．
+    順に，$\ket{\psi_{+}}_0$，$\ket{\psi_{+}}_1$，$\ket{\psi_{-}}_0$，$\ket{\psi_{-}}_1$である．
+    \begin{figure}[H]
+      \centering
+      \includegraphics[width = 0.5\linewidth]{/home/hawk/desktop/lab/papers/src/Large_quantum_superpositions_of_a_levitated_nanodiamond_through_spin-optomechanical_coupling/6.png}
+    \end{figure}
+    熱による緩和を入れたときの図．
+    $\ev{n} \ll 1$のとき，熱に対して運動状態はロバストである．
+\end{document}
