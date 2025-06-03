@@ -1,0 +1,22 @@
+\begin{boxnote}
+      \begin{description}
+        \item[種類] Article
+        \item[閲覧日] 14th May 2025
+        \item[キーワード] Trapped-ion, Dynamical decoupling
+        \item[文献番号] \cite{PhysRevA.106.042603}
+        \item[関連論文] Quditへの応用\cite{PhysRevA.109.022620}, 論文の元のアイデア\cite{PhysRevLett.112.050504}
+      \end{description}
+    \end{boxnote}
+    \section{行ったこと}
+      ダイナミカルデカップリングを用いて，ホッピングによる状態遷移から量子ビットを守る．
+    \section{モチベーション}
+      イオントラップ系は，イオンの内部状態の2準位系とボゾン的な運動状態が結合した系である．
+      そのうち，運動状態を用いた量子計算であるボゾンサンプリングが量子コンピュータの1つとして注目されている．
+      ボゾンサンプリングは，$\# P$困難問題の1つであるSlater行列式を計算することに期待されている．
+      イオンを線状に並べて計算を行う方式では，イオンの運動状態がCoulomb力によって相互作用をする．
+      そのハミルトニアンは，
+      \begin{align}
+        \hat{H}_{\r{hop}} = \frac{\kappa_{12}}{2}\qty(\hat{a}_1\hat{a}^{\dag}_2 + \hat{a}^{\dag}_1\hat{a}_2)
+      \end{align}
+      である．
+      このホッピングによって系の状態が変わってしまうことを，パルスを打って時間反転することで打ち消そうとすることが今回のモチベーションである．
